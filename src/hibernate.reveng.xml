@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.org/dtd/hibernate-reverse-engineering-3.0.dtd" >
+
+<hibernate-reverse-engineering>
+  <table-filter match-catalog="PCD" match-name="Classe"/>
+  <table-filter match-catalog="PCD" match-name="Compte"/>
+  <table-filter match-catalog="PCD" match-name="Enseignant"/>
+  <table-filter match-catalog="PCD" match-name="Etudiant"/>
+  <table-filter match-catalog="PCD" match-name="Matiere"/>
+  <table-filter match-catalog="PCD" match-name="ResponsableScolarite"/>
+</hibernate-reverse-engineering>
