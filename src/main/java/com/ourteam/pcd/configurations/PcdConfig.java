@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Import;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 
 @Configuration
-@ComponentScan({"com.ourteam.pcd.Services"})
+@ComponentScan({"com.ourteam.pcd.services"})
 @Import({ PcdPersistenceConfig.class })
 public class PcdConfig {
 

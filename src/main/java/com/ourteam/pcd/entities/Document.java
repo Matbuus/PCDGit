@@ -10,13 +10,13 @@ public class Document {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	protected Long id;
+	protected Long idDocument;
 	
 	@Column(name="nom",nullable=false,unique=false)
-		protected String nom;
+	protected String nom;
 	
-	public Long getId() {
-		return id;
+	public Long getIdDocument() {
+		return idDocument;
 	}
 
 	
@@ -24,6 +24,13 @@ public class Document {
 		return nom;
 	}
 	public void setNom(String nom) {
+		this.nom = nom;
+	}
+
+
+	public Document(Long idDocument, String nom) {
+		super();
+		this.idDocument = idDocument;
 		this.nom = nom;
 	}
 

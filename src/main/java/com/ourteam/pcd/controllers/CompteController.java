@@ -3,6 +3,8 @@ package com.ourteam.pcd.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -13,6 +15,7 @@ import com.ourteam.pcd.services.CompteService;
 import com.ourteam.pcd.entities.Compte;
 
 @RestController
+@Transactional
 @RequestMapping("/compte")
 public class CompteController {
 	@Autowired
@@ -33,6 +36,12 @@ public class CompteController {
 		for(int i=0;i<liste.size();i++)
 			System.out.println("Email: " + liste.get(i).getEmail() + " | Password: "+ liste.get(i).getPassword());
 		return liste;
+	}
+	
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET, headers = "Accept=application/json")
+	@ResponseBody
+	public void Test(@PathVariable(value="id") String id) throws Exception {
+			System.out.println("ID = " + id);
 	}
 
 }

@@ -12,6 +12,10 @@ import javax.persistence.Table;
 public class DocumentAdministratif extends Document {
 	
 
+	public DocumentAdministratif(Long id, String nom) {
+		super(id, nom);
+	}
+
 	public DocumentAdministratif () {}
 	
 	

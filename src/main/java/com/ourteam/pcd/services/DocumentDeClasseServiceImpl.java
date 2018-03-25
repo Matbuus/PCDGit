@@ -2,10 +2,17 @@ package com.ourteam.pcd.services;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.ourteam.pcd.entities.DocumentDeClasse;
+import com.ourteam.pcd.persistence.dao.DocumentDeClasseRepository;
 
+@Service
 public class DocumentDeClasseServiceImpl implements DocumentDeClasseService {
-
+	@Autowired
+	DocumentDeClasseRepository documentDeClasseDao;
+	
 	@Override
 	public List<DocumentDeClasse> findAll() {
 		// TODO Auto-generated method stub
@@ -14,14 +21,12 @@ public class DocumentDeClasseServiceImpl implements DocumentDeClasseService {
 
 	@Override
 	public DocumentDeClasse findOne(Long arg0) {
-		// TODO Auto-generated method stub
-		return null;
+		return documentDeClasseDao.findOne(arg0);
 	}
 
 	@Override
 	public DocumentDeClasse getOne(Long arg0) {
-		// TODO Auto-generated method stub
-		return null;
+		return documentDeClasseDao.getOne(arg0);
 	}
 
 	@Override

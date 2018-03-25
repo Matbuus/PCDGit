@@ -2,10 +2,18 @@ package com.ourteam.pcd.services;
 
 import java.util.List;
 
-import com.ourteam.pcd.entities.DocumentAdministratif;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import com.ourteam.pcd.entities.DocumentAdministratif;
+import com.ourteam.pcd.persistence.dao.DocumentAdministratifRepository;
+
+@Service
 public class DocumentAdministratifServiceImpl implements DocumentAdministratifService {
 
+	@Autowired
+	DocumentAdministratifRepository documentAdministratifDao;
+	
 	@Override
 	public List<DocumentAdministratif> findAll() {
 		// TODO Auto-generated method stub

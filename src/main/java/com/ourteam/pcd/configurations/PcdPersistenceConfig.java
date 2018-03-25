@@ -19,8 +19,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @PropertySource("classpath:persistence.properties")
-@ComponentScan("com.ourteam.pcd.Persistence")
-@EnableJpaRepositories("com.ourteam.pcd.Persistence.Dao")
+@ComponentScan("com.ourteam.pcd.persistence")
+@EnableJpaRepositories("com.ourteam.pcd.persistence.dao")
 @EnableTransactionManagement
 public class PcdPersistenceConfig {
 

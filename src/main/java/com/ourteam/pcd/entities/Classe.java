@@ -1,7 +1,10 @@
 package com.ourteam.pcd.entities;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
@@ -12,25 +15,32 @@ public class Classe {
 	public Classe() {}
 	
 	@Id
-	@Column(name="nom")
-	private String nom;
+	@Column(name="nomClasse")
+	private String nomClasse;
 
-	public String getNom() {
-		return nom;
+	public String getNomClasse() {
+		return nomClasse;
 	}
 
-	public void setNom(String nom) {
-		this.nom = nom;
-	}
-	@Column(name="nom2")
-	private String nom2;
-
-	public String getNom2() {
-		return nom2;
+	public void setNomClasse(String nomClasse) {
+		this.nomClasse = nomClasse;
 	}
 
-	public void setNom2(String nom2) {
-		this.nom2 = nom2;
+	public Classe(String nomClasse) {
+		super();
+		this.nomClasse = nomClasse;
 	}
+	
+	@OneToMany(mappedBy="classeConcernee")
+	private Set<Autorisation> autorisationsRecues;
+
+	public Set<Autorisation> getAutorisationsRecues() {
+		return autorisationsRecues;
+	}
+
+	public void setAutorisationsRecues(Set<Autorisation> autorisationsRecues) {
+		this.autorisationsRecues = autorisationsRecues;
+	}
+
 	
 }
