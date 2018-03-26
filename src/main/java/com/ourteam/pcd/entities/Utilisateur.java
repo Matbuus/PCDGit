@@ -21,7 +21,6 @@ public class Utilisateur {
 	@JoinColumn(name="email", unique=true,nullable=false) // Jointure avec la table Compte en utilisant la colonne "email"
 	protected Compte compte;
 	
-	
 	public Compte getCompte() {
 		return compte;
 	}

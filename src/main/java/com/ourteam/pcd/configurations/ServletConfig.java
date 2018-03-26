@@ -36,24 +36,20 @@ public class ServletConfig extends WebMvcConfigurerAdapter {
 	@Bean
 	public SwaggerSpringMvcPlugin customImplementation() {
 
-		SwaggerSpringMvcPlugin swaggerSpringMvcPlugin = new SwaggerSpringMvcPlugin(this.springSwaggerConfig)
+		return new SwaggerSpringMvcPlugin(this.springSwaggerConfig)
 				.apiInfo(apiInfo()).includePatterns(".*");
 
-		return swaggerSpringMvcPlugin;
 	}
 
 	private ApiInfo apiInfo() {
-		ApiInfo apiInfo = new ApiInfo(env.getProperty("swagger.title"), env.getProperty("swagger.description"),
+		return new ApiInfo(env.getProperty("swagger.title"), env.getProperty("swagger.description"),
 				env.getProperty("swagger.termsOfServiceUrl"), env.getProperty("swagger.contact"),
 				env.getProperty("swagger.license"), env.getProperty("swagger.licenseUrl"));
 
-		return apiInfo;
 	}
 
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-		// registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
-
 		registry.addResourceHandler(WEB_JAR_RESOURCE_PATTERNS).addResourceLocations(WEB_JAR_RESOURCE_LOCATION)
 				.setCachePeriod(0);
 	}

@@ -1,7 +1,6 @@
 package com.ourteam.pcd.services;
 
 import java.util.List;
-
 import com.ourteam.pcd.entities.Enseignant;
 
 
@@ -18,5 +17,6 @@ public interface EnseignantService {
 	public void delete(String arg0);
 
 	public void delete(Enseignant arg0);
-
+	
+	public List<Enseignant> chercherParNom(String arg0);
 }

@@ -18,5 +18,7 @@ public interface DocumentDeClasseService {
 	public void delete(Long arg0);
 
 	public void delete(DocumentDeClasse arg0);
+	
+	public List<DocumentDeClasse> chercherParNom(String arg0);
 
 }

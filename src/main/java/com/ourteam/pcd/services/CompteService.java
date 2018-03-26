@@ -3,6 +3,7 @@ package com.ourteam.pcd.services;
 import java.util.List;
 
 import com.ourteam.pcd.entities.Compte;
+import com.ourteam.pcd.entities.Utilisateur;
 
 
 public interface CompteService {
@@ -18,5 +19,7 @@ public interface CompteService {
 	public void delete(String arg0);
 
 	public void delete(Compte arg0);
+	
+	public Utilisateur connexion(Compte arg0);
 
 }

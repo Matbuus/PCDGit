@@ -6,12 +6,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ourteam.pcd.persistence.dao.CompteRepository;
+import com.ourteam.pcd.persistence.dao.EnseignantRepository;
+import com.ourteam.pcd.persistence.dao.EtudiantRepository;
+import com.ourteam.pcd.persistence.dao.ResponsableScolariteRepository;
 import com.ourteam.pcd.entities.Compte;
+import com.ourteam.pcd.entities.Utilisateur;
 
 @Service
 public class CompteServiceImpl implements CompteService {
 	@Autowired
 	CompteRepository compteDao;
+	@Autowired
+	EtudiantRepository etudiantDao;
+	@Autowired
+	EnseignantRepository enseignantDao;
+	@Autowired
+	ResponsableScolariteRepository responsableScolariteDao;
 
 	@Override
 	public List<Compte> findAll() {
@@ -20,8 +30,7 @@ public class CompteServiceImpl implements CompteService {
 
 	@Override
 	public Compte findOne(String arg0) {
-		// TODO Auto-generated method stub
-		return null;
+		return compteDao.findOne(arg0);
 	}
 
 	@Override
@@ -50,5 +59,21 @@ public class CompteServiceImpl implements CompteService {
 		}
 	}
 
+	public Utilisateur connexion(Compte arg0) {
+		Compte compteAVerifier = this.findOne(arg0.getEmail());
+		if( compteAVerifier != null) {
+			System.out.println("FOUND BY MAIL");
+			if(compteAVerifier.getPassword().equals(arg0.getPassword()))
+			{
+				if(responsableScolariteDao.findByCompte(arg0) != null)
+					return responsableScolariteDao.findByCompte(arg0);
+				else if (enseignantDao.findByCompte(arg0) != null)
+					return  enseignantDao.findByCompte(arg0);
+				else return etudiantDao.findByCompte(arg0);
+			}
+			else return null;
+		}
+		else return null;
+	}
 
 }
