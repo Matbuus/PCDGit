@@ -3,6 +3,8 @@ package com.ourteam.pcd.configurations;
 import java.io.IOException;
 import java.util.Properties;
 
+import javax.servlet.annotation.MultipartConfig;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -18,8 +20,10 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 @Configuration
+@MultipartConfig
 @PropertySource("classpath:persistence.properties")
 @ComponentScan("com.ourteam.pcd.persistence")
 @ComponentScan({"com.ourteam.pcd.services"})
@@ -66,7 +70,13 @@ public class PcdConfig {
 		entityManagerFactoryBean.setJpaProperties(hibernateProperties(env));
 		return entityManagerFactoryBean;
 	}
-
+	@Bean(name = "multipartResolver")
+	public CommonsMultipartResolver multipartResolverInit(Environment env) {
+		CommonsMultipartResolver multipartResolverBean = new CommonsMultipartResolver();
+		multipartResolverBean.setMaxUploadSize(268435456);
+		return multipartResolverBean;
+	}
+	
 	@SuppressWarnings("serial")
 	Properties hibernateProperties(final Environment env) {
 		return new Properties() {

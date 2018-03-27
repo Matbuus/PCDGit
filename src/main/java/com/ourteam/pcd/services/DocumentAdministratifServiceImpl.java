@@ -16,38 +16,33 @@ public class DocumentAdministratifServiceImpl implements DocumentAdministratifSe
 	
 	@Override
 	public List<DocumentAdministratif> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return documentAdministratifDao.findAll();
 	}
 
 	@Override
 	public DocumentAdministratif findOne(Long arg0) {
-		// TODO Auto-generated method stub
-		return null;
+		return documentAdministratifDao.findOne(arg0);
 	}
 
 	@Override
 	public DocumentAdministratif getOne(Long arg0) {
-		// TODO Auto-generated method stub
-		return null;
+		return documentAdministratifDao.getOne(arg0);
 	}
 
 	@Override
 	public DocumentAdministratif saveAndFlush(DocumentAdministratif arg0) {
-		// TODO Auto-generated method stub
-		return null;
+		return documentAdministratifDao.saveAndFlush(arg0);
 	}
 
 	@Override
 	public void delete(Long arg0) {
-		// TODO Auto-generated method stub
+		documentAdministratifDao.delete(arg0);
 		
 	}
 
 	@Override
 	public void delete(DocumentAdministratif arg0) {
-		// TODO Auto-generated method stub
-		
+		documentAdministratifDao.delete(arg0);	
 	}
 
 }

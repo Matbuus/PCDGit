@@ -1,5 +1,6 @@
 /Users/malekattia/Documents/PCD/PCDGit/src/main/java/com/ourteam/pcd/persistence/dao/EnseignantRepository.java
 /Users/malekattia/Documents/PCD/PCDGit/src/main/java/com/ourteam/pcd/persistence/dao/DocumentAdministratifRepository.java
+/Users/malekattia/Documents/PCD/PCDGit/src/main/java/com/ourteam/pcd/controllers/FiltreEtudiant.java
 /Users/malekattia/Documents/PCD/PCDGit/src/main/java/com/ourteam/pcd/entities/DocumentAdministratif.java
 /Users/malekattia/Documents/PCD/PCDGit/src/main/java/com/ourteam/pcd/services/AutorisationService.java
 /Users/malekattia/Documents/PCD/PCDGit/src/main/java/com/ourteam/pcd/controllers/ConnexionController.java
@@ -8,7 +9,6 @@
 /Users/malekattia/Documents/PCD/PCDGit/src/main/java/com/ourteam/pcd/persistence/dao/ResponsableScolariteRepository.java
 /Users/malekattia/Documents/PCD/PCDGit/src/main/java/com/ourteam/pcd/services/AutorisationServiceImpl.java
 /Users/malekattia/Documents/PCD/PCDGit/src/main/java/com/ourteam/pcd/services/MatiereService.java
-/Users/malekattia/Documents/PCD/PCDGit/src/main/java/com/ourteam/pcd/controllers/EtudiantFiltre.java
 /Users/malekattia/Documents/PCD/PCDGit/src/main/java/com/ourteam/pcd/controllers/EnseignantController.java
 /Users/malekattia/Documents/PCD/PCDGit/src/main/java/com/ourteam/pcd/services/CompteService.java
 /Users/malekattia/Documents/PCD/PCDGit/src/main/java/com/ourteam/pcd/configurations/ServletConfig.java
@@ -28,10 +28,12 @@
 /Users/malekattia/Documents/PCD/PCDGit/src/main/java/com/ourteam/pcd/persistence/dao/EtudiantRepository.java
 /Users/malekattia/Documents/PCD/PCDGit/src/main/java/com/ourteam/pcd/services/DocumentDeClasseService.java
 /Users/malekattia/Documents/PCD/PCDGit/src/main/java/com/ourteam/pcd/entities/Autorisation.java
+/Users/malekattia/Documents/PCD/PCDGit/src/main/java/com/ourteam/pcd/controllers/FiltreAdmin.java
 /Users/malekattia/Documents/PCD/PCDGit/src/main/java/com/ourteam/pcd/entities/Classe.java
 /Users/malekattia/Documents/PCD/PCDGit/src/main/java/com/ourteam/pcd/entities/Matiere.java
 /Users/malekattia/Documents/PCD/PCDGit/src/main/java/com/ourteam/pcd/entities/Etudiant.java
 /Users/malekattia/Documents/PCD/PCDGit/src/main/java/com/ourteam/pcd/entities/DocumentDeClasse.java
+/Users/malekattia/Documents/PCD/PCDGit/src/main/java/com/ourteam/pcd/controllers/FiltreEnseignant.java
 /Users/malekattia/Documents/PCD/PCDGit/src/main/java/com/ourteam/pcd/services/DocumentAdministratifServiceImpl.java
 /Users/malekattia/Documents/PCD/PCDGit/src/main/java/com/ourteam/pcd/persistence/dao/DocumentDeClasseRepository.java
 /Users/malekattia/Documents/PCD/PCDGit/src/main/java/com/ourteam/pcd/configurations/ConfigInitializer.java

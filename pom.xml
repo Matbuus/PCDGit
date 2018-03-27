@@ -225,6 +225,10 @@
 			<artifactId>swagger-spring-mvc-ui</artifactId>
 			<version>${swagger-springmvc-ui.version}</version>
 		</dependency>
-	
+	  <dependency>
+	   <groupId>commons-fileupload</groupId>
+	   <artifactId>commons-fileupload</artifactId>
+	   <version>1.3.1</version>
+	  </dependency>
 	</dependencies>
 </project>

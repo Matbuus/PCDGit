@@ -31,8 +31,8 @@ public class DocumentDeClasse extends Document {
 		this.enseignant = enseignant;
 	}
 
-	public DocumentDeClasse(Long id, String nom,Enseignant enseignant) {
-		super(id, nom);
+	public DocumentDeClasse(Long id, String nom,Enseignant enseignant, String nomOriginal) {
+		super(id, nom, nomOriginal);
 		this.enseignant = enseignant;
 	} 
 	

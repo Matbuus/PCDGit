@@ -62,7 +62,6 @@ public class CompteServiceImpl implements CompteService {
 	public Utilisateur connexion(Compte arg0) {
 		Compte compteAVerifier = this.findOne(arg0.getEmail());
 		if( compteAVerifier != null) {
-			System.out.println("FOUND BY MAIL");
 			if(compteAVerifier.getPassword().equals(arg0.getPassword()))
 			{
 				if(responsableScolariteDao.findByCompte(arg0) != null)

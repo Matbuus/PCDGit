@@ -2,6 +2,8 @@ package com.ourteam.pcd.entities;
 
 import javax.persistence.*;
 
+import java.sql.Timestamp;
+
 @MappedSuperclass
 @Table(name="Document")
 public class Document {
@@ -15,6 +17,39 @@ public class Document {
 	@Column(name="nom",nullable=false,unique=false)
 	protected String nom;
 	
+	@Column(name="nomOriginal",nullable=false,unique=false)
+	protected String nomOriginal;
+	
+	@Column(name="dateDePublication", nullable=false, unique= false)
+	protected Timestamp dateDePublication;
+	
+	
+
+	public Timestamp getDateDePublication() {
+		return dateDePublication;
+	}
+
+
+	public void setDateDePublication(Timestamp dateDePublication) {
+		this.dateDePublication = dateDePublication;
+	}
+
+
+	public String getNomOriginal() {
+		return nomOriginal;
+	}
+
+
+	public void setNomOriginal(String nomOriginal) {
+		this.nomOriginal = nomOriginal;
+	}
+
+
+	public void setIdDocument(Long idDocument) {
+		this.idDocument = idDocument;
+	}
+
+
 	public Long getIdDocument() {
 		return idDocument;
 	}
@@ -28,10 +63,11 @@ public class Document {
 	}
 
 
-	public Document(Long idDocument, String nom) {
+	public Document(Long idDocument, String nom,String nomOriginal) {
 		super();
 		this.idDocument = idDocument;
 		this.nom = nom;
+		this.nomOriginal = nomOriginal;
 	}
 
 }

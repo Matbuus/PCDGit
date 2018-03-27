@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebFilter("/admin/*")
+@WebFilter("/responsable/*")
 public class FiltreAdmin implements Filter {
 	private final String badRequest = "/badrequest";
 	
@@ -30,12 +30,12 @@ public class FiltreAdmin implements Filter {
         HttpServletResponse response = (HttpServletResponse) res;
         HttpSession session = request.getSession();
         if(session.getAttribute("USER_TYPE").equals("ADMIN")) {
-         	System.out.println("ADMIN");
+         //	System.out.println("ADMIN");
          	chain.doFilter(request, response);
         		
         }
         else {    
-        	System.out.println("NOT ADMIN");
+      //  	System.out.println("NOT ADMIN");
         	request.getRequestDispatcher(badRequest).forward(request, response);
         }
 		

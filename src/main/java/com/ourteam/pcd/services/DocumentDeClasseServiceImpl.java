@@ -52,7 +52,7 @@ public class DocumentDeClasseServiceImpl implements DocumentDeClasseService {
 		List<DocumentDeClasse> all = this.findAll();
 		ArrayList<DocumentDeClasse> res = new ArrayList<>();
 		for(int i=0;i<all.size();i++) {
-			if(all.get(i).getNom().contains(arg0))
+			if(all.get(i).getNomOriginal().contains(arg0))
 				res.add(all.get(i));
 		}
 		String[] words = arg0.split(" ");
@@ -60,7 +60,7 @@ public class DocumentDeClasseServiceImpl implements DocumentDeClasseService {
 			if(res.contains((DocumentDeClasse)(all.get(i))))
 					continue;
 			for(int j=0;j< words.length;j++) {
-				if(all.get(i).getNom().contains(words[j]))
+				if(all.get(i).getNomOriginal().contains(words[j]))
 					res.add(all.get(i));
 			}		
 		}		

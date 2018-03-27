@@ -13,7 +13,8 @@ import com.ourteam.pcd.services.CompteService;
 import com.ourteam.pcd.services.EtudiantService;
 import com.ourteam.pcd.configurations.PcdConfig;
 import com.ourteam.pcd.entities.Compte;
-import com.ourteam.pcd.entities.Etudiant;
+import com.ourteam.pcd.entities.ResponsableScolarite;
+import com.ourteam.pcd.persistence.dao.ResponsableScolariteRepository;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -24,17 +25,17 @@ import com.ourteam.pcd.entities.Etudiant;
 public class AppTest {
 
 	@Autowired
-	private EtudiantService etudiantService;
+	private ResponsableScolariteRepository responsableScolariteDao;
 	
 	@Autowired 
 	private CompteService compteService;
 	
 	
 	@Test
-	public void saveCompteAndEtudiant()  {
+	public void saveCompteAndAdmin()  {
 		Compte c =new Compte("pcd@pcd.com","PCD");
 		compteService.saveAndFlush(c);
-		etudiantService.saveAndFlush(new Etudiant("II000000",c,"PCDTEST","PCDTEST","12345678"));
+		responsableScolariteDao.saveAndFlush(new ResponsableScolarite("II000000",c,"PCDTEST","PCDTEST","12345678"));
 		
 	}
 

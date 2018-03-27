@@ -31,12 +31,18 @@ public class FiltreVerificationConnexion implements Filter {
 		HttpServletRequest request = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) res;
         HttpSession session = request.getSession();
+        
+        // Si cet attibut est nul, cela signifie que la connexion n'a pas encore eu lieu
+        
         if(session.getAttribute("Compte") == null) {
         		// forwarding vers la page de connexion
         		request.getRequestDispatcher(lienConnexion).forward(request, response);
         }
         else {
-        	System.out.println("VOUS ETES CONNECTE, "+session.getAttribute("USER_NAME"));
+        	
+        	// La connexion a eu lieu -> chainage des filtres 
+        	
+      //  	System.out.println("VOUS ETES CONNECTE, "+session.getAttribute("USER_NAME"));
         	chain.doFilter(request, response);
         }
 		

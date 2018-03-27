@@ -29,12 +29,12 @@ public class FiltreEtudiant implements Filter {
         HttpServletResponse response = (HttpServletResponse) res;
         HttpSession session = request.getSession();
         if(session.getAttribute("USER_TYPE").equals("ETUDIANT")) {
-         	System.out.println("ETUDIANT");
+        	//  	System.out.println("ETUDIANT");
          	chain.doFilter(request, response);
         		
         }
         else {
-        	System.out.println("NOT ETUDIANT");
+        	//  	System.out.println("NOT ETUDIANT");
         	request.getRequestDispatcher(badRequest).forward(request, response);
         }
 		

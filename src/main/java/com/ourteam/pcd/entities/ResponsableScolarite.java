@@ -10,6 +10,11 @@ import javax.persistence.Table;
 
 public class ResponsableScolarite extends Utilisateur {
 	
+	public ResponsableScolarite(String idResponsable,Compte compte, String nom, String prenom, String telephone) {
+		super(compte, nom, prenom, telephone);
+		this.idResponsable = idResponsable;
+	}
+
 	public ResponsableScolarite() {}
 	
 	@Id
