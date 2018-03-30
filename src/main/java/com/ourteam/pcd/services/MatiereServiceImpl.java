@@ -15,38 +15,38 @@ public class MatiereServiceImpl implements MatiereService {
 	
 	@Override
 	public List<Matiere> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return matiereDao.findAll();
 	}
 
 	@Override
-	public Matiere findOne(String arg0) {
-		// TODO Auto-generated method stub
-		return null;
+	public Matiere findOne(Long arg0) {
+		return matiereDao.findOne(arg0);
 	}
 
 	@Override
-	public Matiere getOne(String arg0) {
-		// TODO Auto-generated method stub
-		return null;
+	public Matiere getOne(Long arg0) {
+		return matiereDao.getOne(arg0);
 	}
 
 	@Override
 	public Matiere saveAndFlush(Matiere arg0) {
-		// TODO Auto-generated method stub
-		return null;
+		return matiereDao.saveAndFlush(arg0);
 	}
 
 	@Override
-	public void delete(String arg0) {
-		// TODO Auto-generated method stub
+	public void delete(Long arg0) {
+		matiereDao.delete(arg0);
 		
 	}
 
 	@Override
 	public void delete(Matiere arg0) {
-		// TODO Auto-generated method stub
+		matiereDao.delete(arg0);
 		
 	}
 
+	
+	public Matiere findByNom(String nom) {
+		return matiereDao.findByNom(nom);		
+	}
 }

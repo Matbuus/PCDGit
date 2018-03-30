@@ -17,7 +17,7 @@ public class Utilisateur {
 		this.telephone = telephone;
 	}
 
-	@OneToOne
+	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="email", unique=true,nullable=false) // Jointure avec la table Compte en utilisant la colonne "email"
 	protected Compte compte;
 	

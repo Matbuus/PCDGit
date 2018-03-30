@@ -23,15 +23,18 @@ import org.springframework.web.multipart.MultipartFile;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-
+import com.ourteam.pcd.entities.Classe;
 import com.ourteam.pcd.entities.Compte;
 import com.ourteam.pcd.entities.DocumentAdministratif;
 import com.ourteam.pcd.entities.Enseignant;
 import com.ourteam.pcd.entities.Etudiant;
+import com.ourteam.pcd.entities.Matiere;
+import com.ourteam.pcd.services.ClasseService;
 import com.ourteam.pcd.services.CompteService;
 import com.ourteam.pcd.services.DocumentAdministratifService;
 import com.ourteam.pcd.services.EnseignantService;
 import com.ourteam.pcd.services.EtudiantService;
+import com.ourteam.pcd.services.MatiereService;
 
 // Controlleur des actions de l'admin/responsable scolarité:
 // Possibilité de gérer les comptes des utilisateurs et de gerer des documents administratifs 
@@ -52,6 +55,10 @@ public class AdminController {
 	private EtudiantService etudiantService;
 	@Autowired
 	private DocumentAdministratifService documentAdministratifService;
+	@Autowired
+	private MatiereService matiereService;
+	@Autowired
+	private ClasseService classeService;
 	
 	
 	// TEST 
@@ -146,7 +153,7 @@ public class AdminController {
 	
 	// Suppression d'un compte après les avoir listés grace à la requete GET :
 	
-	@RequestMapping(value = "/comptes/delete/{email}", method = RequestMethod.GET)
+	@RequestMapping(value = "/comptes/delete/{email}", method = RequestMethod.DELETE)
     @ResponseBody
     public void supprimerDocument(@PathVariable("email") String email) {
 		// Exception au cas ou l'email n'existe pas
@@ -188,7 +195,7 @@ public class AdminController {
 	    
 	    	  // Destination ou enregistrer les fichiers sur le serveur 
 	    
-	    File destinationFile = new File("/Users/malekattia/Documents/PCD/uploadedfiles/"+ originalFilename+java.sql.Timestamp.valueOf(LocalDateTime.now()));
+	    File destinationFile = new File("/Users/malekattia/Documents/PCD/uploadedfiles/"+ originalFilename + java.sql.Timestamp.valueOf(LocalDateTime.now()));
 	    inputFile.transferTo(destinationFile);
 	    
 	    // Mise en place de notre objet à persister
@@ -213,7 +220,7 @@ public class AdminController {
 	
 	// Suppression d'un document administratif:
 	
-	@RequestMapping(value = "/documents/delete/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/documents/delete/{id}", method = RequestMethod.DELETE)
     @ResponseBody
     public void supprimerDocument(@PathVariable("id") Long id) {
 		// Exception au cas ou l'id n'existe pas
@@ -225,5 +232,62 @@ public class AdminController {
 		}
     }
 
+	/////////////////////////////// GESTION DIVERS ///////////////////////////////////////
 	
+	// L'ajout de matières dans la base de données
+	
+	@RequestMapping(value = "/matiere/add", method = RequestMethod.POST, headers = "Accept=application/json")
+	@ResponseBody
+	public void ajouterMatiere(HttpSession session,@RequestBody Matiere matiere) throws Exception {
+		if(matiereService.findByNom(matiere.getNom()) != null) {
+			System.out.println("Matiere déjà inserée");
+		}
+		else {
+			matiereService.saveAndFlush(matiere);
+		}
+		}
+	
+	// L'ajout d'une classe dans la base de données
+	
+	@RequestMapping(value = "/classe/add", method = RequestMethod.POST, headers = "Accept=application/json")
+	@ResponseBody
+	public void ajouterClasse(HttpSession session,@RequestBody Classe classe) throws Exception {
+		if(classeService.findByNomClasse(classe.getNomClasse()) != null) {
+			System.out.println("Classe déjà inserée");
+		}
+		else {
+			classeService.saveAndFlush(classe);
+		}
+	}
+	
+	// L'ajout des étudiants dans la classe choisie
+	
+	@RequestMapping(value = "/classe/{idclasse}/addetudiants", method = RequestMethod.POST,headers = "Accept=application/json")
+	@ResponseBody
+	public void addEtudiantsToClasse(@PathVariable("idclasse") Long idclasse, @RequestParam("idEtudiants") String[] idEtudiants) {
+		Classe c = classeService.findOne(idclasse);
+		classeService.addEtudiantsToClasse(c, idEtudiants);
+	
+	
+	
+	}
+	
+	@RequestMapping(value = "/classe/{idclasse}/addmatieres", method = RequestMethod.POST,headers = "Accept=application/json")
+	@ResponseBody
+	public void addMatiereToClasse(@PathVariable("idclasse") Long idclasse, @RequestParam("nomMatieres") String[] nomMatieres) {
+		Classe c = classeService.findOne(idclasse);
+		classeService.addMatieresToClasse(c, nomMatieres);
+	
+	
+	
+	}
+
+	
+
+
+
 }
+
+
+
+

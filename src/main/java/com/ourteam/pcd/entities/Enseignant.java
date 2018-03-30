@@ -5,8 +5,11 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="Enseignant")
@@ -30,6 +33,7 @@ public class Enseignant extends Utilisateur {
 	public void setIdEnseignant(String idEnseignant) {
 		this.idEnseignant = idEnseignant;
 	}
+	@JsonIgnore
 	@OneToMany(mappedBy="enseignant", fetch=FetchType.EAGER)
 	private Set<DocumentDeClasse> ensembleDocumentsDeClasse;
 
@@ -41,6 +45,7 @@ public class Enseignant extends Utilisateur {
 		this.ensembleDocumentsDeClasse = ensembleDocumentsDeClasse;
 	}
 
+	@JsonIgnore
 	@OneToMany(mappedBy="enseignantResponsable", fetch=FetchType.EAGER)
 	private Set<Autorisation> autorisationsDonnees;
 
@@ -52,4 +57,15 @@ public class Enseignant extends Utilisateur {
 		this.autorisationsDonnees = autorisationsDonnees;
 	}
 
+	@JsonIgnore
+	@ManyToMany(fetch = FetchType.EAGER, mappedBy = "enseignants")
+	private Set<Matiere> matieres;
+
+	public Set<Matiere> getMatieres() {
+		return matieres;
+	}
+
+	public void setMatieres(Set<Matiere> matieres) {
+		this.matieres = matieres;
+	}
 }

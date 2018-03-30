@@ -7,5 +7,6 @@ import com.ourteam.pcd.entities.Matiere;
 
 
 @Repository("matiereRepository")
-public interface MatiereRepository extends JpaRepository<Matiere, String>  {
+public interface MatiereRepository extends JpaRepository<Matiere, Long>  {
+	public Matiere findByNom(String nom);
 }

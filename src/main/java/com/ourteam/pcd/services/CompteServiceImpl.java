@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.ourteam.pcd.persistence.dao.CompteRepository;
 import com.ourteam.pcd.persistence.dao.EnseignantRepository;
@@ -12,6 +13,7 @@ import com.ourteam.pcd.persistence.dao.ResponsableScolariteRepository;
 import com.ourteam.pcd.entities.Compte;
 import com.ourteam.pcd.entities.Utilisateur;
 
+@Transactional
 @Service
 public class CompteServiceImpl implements CompteService {
 	@Autowired
@@ -35,8 +37,7 @@ public class CompteServiceImpl implements CompteService {
 
 	@Override
 	public Compte getOne(String arg0) {
-		// TODO Auto-generated method stub
-		return null;
+		return compteDao.getOne(arg0);
 	}
 
 	@Override

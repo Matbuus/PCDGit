@@ -7,5 +7,6 @@ import com.ourteam.pcd.entities.Classe;
 
 
 @Repository("classeDao")
-public interface ClasseRepository extends JpaRepository<Classe, String>  {
+public interface ClasseRepository extends JpaRepository<Classe, Long>  {
+	public Classe findByNomClasse(String nomClasse);
 }

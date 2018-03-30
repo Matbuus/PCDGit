@@ -6,13 +6,17 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ourteam.pcd.entities.Compte;
 import com.ourteam.pcd.entities.Enseignant;
+import com.ourteam.pcd.persistence.dao.CompteRepository;
 import com.ourteam.pcd.persistence.dao.EnseignantRepository;
 
 @Service
 public class EnseignantServiceImpl implements EnseignantService {
 	@Autowired
 	EnseignantRepository enseignantDao;
+	@Autowired
+	CompteRepository compteDao;
 	
 	@Override
 	public List<Enseignant> findAll() {
@@ -61,6 +65,19 @@ public class EnseignantServiceImpl implements EnseignantService {
 			}		
 		}		
 		return res;
+	}
+
+	@Override
+	public Enseignant findByCompte(Compte compte) {
+		Enseignant enseignant =  enseignantDao.findByCompte(compte);
+		System.out.println("Compte mail : " + enseignant.getCompte().getEmail());
+		return enseignant;
+		
+	}
+
+	@Override
+	public Enseignant findByEmail(String email) {
+		return enseignantDao.findByCompte(compteDao.findOne(email));
 	}
 
 }

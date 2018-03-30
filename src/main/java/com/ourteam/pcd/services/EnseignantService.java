@@ -1,6 +1,8 @@
 package com.ourteam.pcd.services;
 
 import java.util.List;
+
+import com.ourteam.pcd.entities.Compte;
 import com.ourteam.pcd.entities.Enseignant;
 
 
@@ -19,4 +21,8 @@ public interface EnseignantService {
 	public void delete(Enseignant arg0);
 	
 	public List<Enseignant> chercherParNom(String arg0);
+	
+	public Enseignant findByCompte(Compte compte);
+	
+	public Enseignant findByEmail(String email);
 }

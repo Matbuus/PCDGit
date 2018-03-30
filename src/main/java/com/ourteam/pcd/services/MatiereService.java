@@ -9,14 +9,16 @@ public interface MatiereService {
 	
 	public List<Matiere> findAll();
 
-	public Matiere findOne(String arg0);
+	public Matiere findOne(Long arg0);
 
-	public Matiere getOne(String arg0);
+	public Matiere getOne(Long arg0);
 
 	public Matiere saveAndFlush(Matiere arg0);
 
-	public void delete(String arg0);
+	public void delete(Long arg0);
 
 	public void delete(Matiere arg0);
+	
+	public Matiere findByNom(String nom);
 
 }

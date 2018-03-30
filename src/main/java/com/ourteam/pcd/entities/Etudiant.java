@@ -1,8 +1,14 @@
 package com.ourteam.pcd.entities;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -27,6 +33,19 @@ public class Etudiant extends Utilisateur {
 		super(compte, nom, prenom, telephone);
 		this.numInscription=numInscription;
 	}
+	
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name="idClasse",nullable=false,unique=true)
+	private Set<Classe> classes;
+
+	public Set<Classe> getClasses() {
+		return classes;
+	}
+
+	public void setClasses(Set<Classe> classes) {
+		this.classes = classes;
+	}
+	
 
 	
 	

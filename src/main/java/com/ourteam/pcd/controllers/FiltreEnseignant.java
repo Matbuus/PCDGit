@@ -13,9 +13,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+
+
 @WebFilter("/enseignant/*")
 public class FiltreEnseignant implements Filter {
 	private final String badRequest = "/badrequest";
+
+	
 	@Override
 	public void destroy() {
 		// TODO Auto-generated method stub
@@ -28,13 +32,11 @@ public class FiltreEnseignant implements Filter {
 		HttpServletRequest request = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) res;
         HttpSession session = request.getSession();
-        if(session.getAttribute("USER_TYPE").equals("ENSEIGNANT")) {
-        	//	System.out.println("ENSEIGNANT");
+        if(session.getAttribute("Compte") != null && session.getAttribute("USER_TYPE").equals("ENSEIGNANT")) {
          	chain.doFilter(request, response);
-        		
         }
         else {
-        	// 	System.out.println("NOT ENSEIGNANT");
+         	System.out.println("NOT ENSEIGNANT");
         	request.getRequestDispatcher(badRequest).forward(request, response);
         }
 		

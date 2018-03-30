@@ -1,6 +1,7 @@
 package com.ourteam.pcd.entities;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -12,22 +13,24 @@ import javax.persistence.Table;
 @Entity
 @Table(name="Autorisation")
 public class Autorisation {
+	
 	public Autorisation() {}
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	protected Long idAutorisation;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="idEnseignant",nullable=false,unique=false)
 	private Enseignant enseignantResponsable;
 	
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="idDocument",nullable=false,unique=false)
 	private DocumentDeClasse documentConcerne;
 	
-	@ManyToOne
-	@JoinColumn(name="nomClasse", nullable = false, unique=false)
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="idClasse", nullable = false, unique=false)
 	private Classe classeConcernee;
 
 	public Long getIdAutorisation() {
