@@ -73,7 +73,7 @@ public class PcdConfig {
 	@Bean(name = "multipartResolver")
 	public CommonsMultipartResolver multipartResolverInit(Environment env) {
 		CommonsMultipartResolver multipartResolverBean = new CommonsMultipartResolver();
-		multipartResolverBean.setMaxUploadSize(268435456);
+		multipartResolverBean.setMaxUploadSize(568435458);
 		return multipartResolverBean;
 	}
 	

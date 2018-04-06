@@ -4,6 +4,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -24,27 +25,28 @@ import com.ourteam.pcd.services.CompteService;
 public class ConnexionController {
 	@Autowired
 	private CompteService compteService;
-	
+	Utilisateur user = null;
 	
 	@RequestMapping(value = "/connexion", method = RequestMethod.POST, headers = "Accept=application/json")
 	@ResponseBody
-	public void connexion(HttpSession session,@RequestBody final Compte compte) throws Exception {
+	@CrossOrigin
+	public Utilisateur connexion(HttpSession session,@RequestBody final Compte compte) throws Exception {
 		
 		String USER_MAIL; // Attribut contenant l'email de l'utilisateur connecté
 		String USER_NAME; // Attribut contenant le nom de l'utilisateur connecté 
 		String USER_TYPE; // Attribut contenant le type de l'utilisateur connecté 
-		
+		System.out.println(compte.getEmail()+ " "+ compte.getPassword());
 		if(session.getAttribute("Compte") != null) {
 			
 			// Si cet attribut est non nul, cela signifie qu'il y a deja une personne connectée
 			
 			System.out.println("Vous êtes déjà connecté ! ");
-			return ;
+			return null;
 		}
 		
 		// Initialisation d'un nouvel utilisateur connecté 
 		
-		Utilisateur user = compteService.connexion(compte);
+		 user = compteService.connexion(compte);
 		
 		// Si user est non nul, cela signifie que ce compte existe bel et bien 
 		
@@ -72,9 +74,10 @@ public class ConnexionController {
 			
 			
 			System.out.println("CONNEXION EFFECTUEE AVEC SUCCES");
+			return user;
 		}
 		// Si user est nul, cela signifie que le compte n'existe pas
-		else System.out.println("COMPTE INEXISTANT");
+		else { System.out.println("COMPTE INEXISTANT"); return null; }
 		
 		
 	}
@@ -84,7 +87,9 @@ public class ConnexionController {
 	
 	@RequestMapping(value = "/connexion", method = RequestMethod.GET, headers = "Accept=application/json")
 	@ResponseBody
+	@CrossOrigin
 	public void pageDeConnexion(HttpSession session) throws Exception {
+		System.out.println("SALUT TOI");
 		if(session.getAttribute("Compte") == null) {
 			session.setAttribute("USER_MAIL", null);
 			session.setAttribute("USER_NAME", null);
@@ -95,12 +100,13 @@ public class ConnexionController {
 	}
 	
 	@RequestMapping(value = "/deconnexion", method = RequestMethod.GET, headers = "Accept=application/json")
-	@ResponseBody
-	public void pageDeDeconnexion(HttpSession session) throws Exception {
+	@CrossOrigin
+	public Utilisateur pageDeDeconnexion(HttpSession session) throws Exception {
 		session.setAttribute("Compte", null);
 		session.setAttribute("USER_MAIL", null);
 		session.setAttribute("USER_NAME", null);
 		session.setAttribute("USER_TYPE", null);
 		System.out.println("Vous êtes déconnecté.");
+		return user;
 	}
 }
