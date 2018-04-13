@@ -17,8 +17,8 @@ public class Enseignant extends Utilisateur {
 	
 	public Enseignant() {}
 	
-	public Enseignant(Compte compte, String nom, String prenom, String telephone, String idEnseignant) {
-		super(compte, nom, prenom, telephone);
+	public Enseignant(Compte compte, String nom, String prenom, String telephone, String idEnseignant,String numcin) {
+		super(compte, nom, prenom, telephone,numcin);
 		this.idEnseignant = idEnseignant;
 	}
 
