@@ -113,7 +113,7 @@ public class AdminController {
 		if(enseignantService.findOne(enseignant.getIdEnseignant()) == null) {
 			
 			// Si l'enseignant n'est pas déjà enregistré
-			
+			compte.setPassword(enseignant.getNumcin());
 			enseignant.setCompte(compte);
 			compteService.saveAndFlush(compte);
 			enseignantService.saveAndFlush(enseignant);
@@ -143,6 +143,7 @@ public class AdminController {
 		else {
 		Etudiant etudiant = mapper.treeToValue(etudiantNode, Etudiant.class);
 		if(etudiantService.findOne(etudiant.getNumInscription()) == null) {
+			compte.setPassword(etudiant.getNumcin());
 			etudiant.setCompte(compte);
 			compteService.saveAndFlush(compte);
 			etudiantService.saveAndFlush(etudiant);
