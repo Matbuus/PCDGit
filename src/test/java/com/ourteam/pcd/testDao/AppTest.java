@@ -35,7 +35,7 @@ public class AppTest {
 	public void saveCompteAndAdmin()  {
 		Compte c =new Compte("pcd@pcd.com","PCD");
 		compteService.saveAndFlush(c);
-		responsableScolariteDao.saveAndFlush(new ResponsableScolarite("II000000",c,"PCDTEST","PCDTEST","12345678"));
+		responsableScolariteDao.saveAndFlush(new ResponsableScolarite("II000000",c,"PCDTEST","PCDTEST","12345678","0000000"));
 		
 	}
 

@@ -70,7 +70,7 @@ public class ConnexionController {
 			session.setAttribute("USER_MAIL", USER_MAIL);
 			session.setAttribute("USER_NAME", USER_NAME);
 			session.setAttribute("USER_TYPE", USER_TYPE);
-	
+			user.setRole(USER_TYPE);	
 			
 			
 			System.out.println("CONNEXION EFFECTUEE AVEC SUCCES");
