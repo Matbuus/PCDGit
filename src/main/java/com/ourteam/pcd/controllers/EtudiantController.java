@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -42,6 +43,7 @@ public class EtudiantController {
 	
 	@RequestMapping(value = "/documents", method = RequestMethod.GET, headers = "Accept=application/json")
     @ResponseBody
+    @CrossOrigin
 	 public List<Matiere> consulterMatieres(HttpSession session)  throws Exception {
 		if(etudiant == null  || etudiant.getCompte().getEmail().equals((String)session.getAttribute("USER_MAIL")) == false) {
 			String mail = (String)session.getAttribute("USER_MAIL");
@@ -62,6 +64,7 @@ public class EtudiantController {
 	
 	@RequestMapping(value = "/documents/{idmatiere}", headers="Accept=application/json" , method = RequestMethod.GET)
     @ResponseBody
+    @CrossOrigin
 	 public List<DocumentDeClasse> consulterDocuments(HttpSession session, @PathVariable("idmatiere") Long idmatiere)  throws Exception{	
 			if(etudiant == null || etudiant.getCompte().getEmail().equals((String)session.getAttribute("USER_MAIL")) == false) {
 				String mail = (String)session.getAttribute("USER_MAIL");

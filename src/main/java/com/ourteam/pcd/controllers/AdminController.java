@@ -3,6 +3,7 @@ package com.ourteam.pcd.controllers;
 import java.io.File;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Random;
 
 import javax.servlet.http.HttpSession;
 
@@ -130,7 +131,7 @@ public class AdminController {
 	// On envoit un compte et un etudiant sous forme de json 
 	// Requete Post pour enregistrer un compte etudiant
 	// Même schema que les comptes enseignants
-	
+	@CrossOrigin
 	@RequestMapping(value = "/comptes/add/etudiant", method = RequestMethod.POST, headers = "Accept=application/json")
 	@ResponseBody
 	public void ajouterEtudiant(HttpSession session,@RequestBody ObjectNode json) throws Exception {
@@ -157,6 +158,7 @@ public class AdminController {
 	
 	@RequestMapping(value = "/comptes/delete/{email}", method = RequestMethod.DELETE)
     @ResponseBody
+    @CrossOrigin
     public void supprimerDocument(@PathVariable("email") String email) {
 		// Exception au cas ou l'email n'existe pas
 		try {
@@ -173,38 +175,45 @@ public class AdminController {
 	///////////////////////////////////////// DOCUMENTS ADMINISTRATIFS ///////////////////////////////////////////////////
 	
 	// GET POUR TEST: Affichage de tous les documents administratifs publiés: Gestion 
-	
+	@CrossOrigin
 	@RequestMapping(value = "/documents", method = RequestMethod.GET, headers = "Accept=application/json")
 	@ResponseBody
-	public void publier(HttpSession session) throws Exception {
+	public List<DocumentAdministratif> publier(HttpSession session) throws Exception {
 		System.out.println("Page de publication de document.");
+		return documentAdministratifService.findAll();
 	}
 	
 	// Front: Formulaire  ou on met le document à publier. 
 	// POST: PUBLICATION D'UN DOCUMENT ADMINISTRATIF:
 	
-	@RequestMapping(value = "/documents/publier", headers=("content-type=multipart/*"), method = RequestMethod.POST)
-	 public ResponseEntity<DocumentAdministratif> upload(@RequestParam("file") MultipartFile inputFile) {
+	@CrossOrigin
+	@RequestMapping(value = "/documents/publier/{titre}", headers=("content-type=multipart/*"), method = RequestMethod.POST)
+	 public ResponseEntity<DocumentAdministratif> upload(@RequestParam("file") MultipartFile inputFile,@PathVariable("titre") String titre) {
 	  // Document qui doit persister
+		
 	  DocumentAdministratif documentAdministratifPublie = new DocumentAdministratif(); 
 	  HttpHeaders headers = new HttpHeaders();
 	  if (!inputFile.isEmpty()) {
 	   try {
-		   
+		   System.out.println(titre);
 		   // Nom original du fichier: A utiliser dans les recherches
 		   
 	    String originalFilename = inputFile.getOriginalFilename();
+	    Random rand = new Random();
+	    int myRandomNumber = rand.nextInt(0x10) + 0x10; // Generates a random number between 0x10 and 0x20
+	    String result = Integer.toHexString(myRandomNumber);
 	    
 	    	  // Destination ou enregistrer les fichiers sur le serveur 
-	    
-	    File destinationFile = new File("/Users/malekattia/Documents/PCD/uploadedfiles/"+ originalFilename + java.sql.Timestamp.valueOf(LocalDateTime.now()));
+	    String suffixe =originalFilename;
+	    File destinationFile = new File("/Users/malekattia/Desktop/front-end/src/assets/"+ suffixe);
 	    inputFile.transferTo(destinationFile);
 	    
 	    // Mise en place de notre objet à persister
 	    
-	    documentAdministratifPublie.setNom(destinationFile.getPath());
+	    documentAdministratifPublie.setNom("assets/"+suffixe);
 	    documentAdministratifPublie.setNomOriginal(originalFilename);
 	    documentAdministratifPublie.setDateDePublication(java.sql.Timestamp.valueOf(LocalDateTime.now()));
+	    documentAdministratifPublie.setTitre(titre);
 	    headers.add("File Uploaded Successfully - ", originalFilename);
 	    
 	    // Enregistrement: 
@@ -221,7 +230,7 @@ public class AdminController {
 	 }
 	
 	// Suppression d'un document administratif:
-	
+	@CrossOrigin
 	@RequestMapping(value = "/documents/delete/{id}", method = RequestMethod.DELETE)
     @ResponseBody
     public void supprimerDocument(@PathVariable("id") Long id) {
@@ -237,7 +246,7 @@ public class AdminController {
 	/////////////////////////////// GESTION DIVERS ///////////////////////////////////////
 	
 	// L'ajout de matières dans la base de données
-	
+	@CrossOrigin
 	@RequestMapping(value = "/matiere/add", method = RequestMethod.POST, headers = "Accept=application/json")
 	@ResponseBody
 	public void ajouterMatiere(HttpSession session,@RequestBody Matiere matiere) throws Exception {
@@ -250,7 +259,7 @@ public class AdminController {
 		}
 	
 	// L'ajout d'une classe dans la base de données
-	
+	@CrossOrigin
 	@RequestMapping(value = "/classe/add", method = RequestMethod.POST, headers = "Accept=application/json")
 	@ResponseBody
 	public void ajouterClasse(HttpSession session,@RequestBody Classe classe) throws Exception {
@@ -263,7 +272,7 @@ public class AdminController {
 	}
 	
 	// L'ajout des étudiants dans la classe choisie
-	
+	@CrossOrigin
 	@RequestMapping(value = "/classe/{idclasse}/addetudiants", method = RequestMethod.POST,headers = "Accept=application/json")
 	@ResponseBody
 	public void addEtudiantsToClasse(@PathVariable("idclasse") Long idclasse, @RequestParam("idEtudiants") String[] idEtudiants) {
@@ -273,7 +282,7 @@ public class AdminController {
 	
 	
 	}
-	
+	@CrossOrigin
 	@RequestMapping(value = "/classe/{idclasse}/addmatieres", method = RequestMethod.POST,headers = "Accept=application/json")
 	@ResponseBody
 	public void addMatiereToClasse(@PathVariable("idclasse") Long idclasse, @RequestParam("nomMatieres") String[] nomMatieres) {

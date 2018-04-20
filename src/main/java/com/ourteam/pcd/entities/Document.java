@@ -23,7 +23,19 @@ public class Document {
 	@Column(name="dateDePublication", nullable=false, unique= false)
 	protected Timestamp dateDePublication;
 	
+	@Column(name="titre", nullable=false, unique=false)
+	protected String titre;
 	
+
+	public String getTitre() {
+		return titre;
+	}
+
+
+	public void setTitre(String titre) {
+		this.titre = titre;
+	}
+
 
 	public Timestamp getDateDePublication() {
 		return dateDePublication;

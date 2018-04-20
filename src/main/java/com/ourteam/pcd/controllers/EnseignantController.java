@@ -13,6 +13,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -54,6 +55,7 @@ public class EnseignantController {
 	
 	@RequestMapping(value = "/documents", method = RequestMethod.GET, headers = "Accept=application/json")
     @ResponseBody
+    @CrossOrigin
 	 public Set<Matiere> consulterMatieres(HttpSession session)  throws Exception {
 		if(enseignant == null || enseignant.getCompte().getEmail().equals((String)session.getAttribute("USER_MAIL")) == false) {
 			String mail = (String)session.getAttribute("USER_MAIL");
@@ -69,6 +71,7 @@ public class EnseignantController {
 	
 	@RequestMapping(value = "/documents/{idmatiere}/{idDocument}", headers="Accept=application/json" , method = RequestMethod.GET)
     @ResponseBody
+    @CrossOrigin
 	public DocumentDeClasse consulterDocument(HttpSession session, @PathVariable("idmatiere") Long idmatiere,@PathVariable("idDocument") Long idDocument)  throws Exception{	
 			if(enseignant == null || enseignant.getCompte().getEmail().equals((String)session.getAttribute("USER_MAIL")) == false ) {
 				String mail = (String)session.getAttribute("USER_MAIL");
@@ -82,6 +85,7 @@ public class EnseignantController {
 	
 	@RequestMapping(value = "/documents/{idmatiere}", headers="Accept=application/json" , method = RequestMethod.GET)
     @ResponseBody
+    @CrossOrigin
 	 public List<DocumentDeClasse> consulterDocuments(HttpSession session, @PathVariable("idmatiere") Long idmatiere)  throws Exception{	
 			if(enseignant == null || enseignant.getCompte().getEmail().equals((String)session.getAttribute("USER_MAIL")) == false) {
 				String mail = (String)session.getAttribute("USER_MAIL");
@@ -97,6 +101,7 @@ public class EnseignantController {
 	
 	@RequestMapping(value = "/documents/{idmatiere}/publier", headers=("content-type=multipart/*"), method = RequestMethod.POST)
     @ResponseBody 
+    @CrossOrigin
 	public ResponseEntity<DocumentDeClasse> upload(HttpSession session,@RequestParam("file") MultipartFile inputFile , @PathVariable("idmatiere") Long idmatiere)  throws Exception{
 		if(enseignant == null || enseignant.getCompte().getEmail().equals((String)session.getAttribute("USER_MAIL")) == false) {
 			String mail = (String)session.getAttribute("USER_MAIL");
@@ -175,6 +180,7 @@ public class EnseignantController {
 	
 	@RequestMapping(value = "/documents/{idmatiere}/{id}/delete", method = RequestMethod.DELETE)
     @ResponseBody
+    @CrossOrigin
     public void supprimerDocument(@PathVariable("id") Long id) {
 		// Exception au cas ou l'id n'existe pas
 		try {
@@ -190,6 +196,7 @@ public class EnseignantController {
 	
 	@RequestMapping(value = "/documents/{idmatiere}/{iddocument}/autoriser/{idclasse}", method = RequestMethod.POST, headers = "Accept=application/json")
 	@ResponseBody
+	@CrossOrigin
 	public void autoriser(HttpSession session,@PathVariable("idmatiere") Long idmatiere,@PathVariable("iddocument") Long iddocument,@PathVariable("idclasse") Long idclasse) throws Exception {
 		if(enseignant == null || enseignant.getCompte().getEmail().equals((String)session.getAttribute("USER_MAIL")) == false) {
 			String mail = (String)session.getAttribute("USER_MAIL");
