@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
+<<<<<<< HEAD
 <testsuite tests="1" failures="0" name="com.ourteam.pcd.testDao.AppTest" time="0.077" errors="0" skipped="0">
+=======
+<testsuite tests="1" failures="0" name="com.ourteam.pcd.testDao.AppTest" time="0.148" errors="0" skipped="0">
+>>>>>>> eb9f22e15f5fd008b7f6cf076bb779c1721815c1
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Users\user\Desktop\Java\jdk1.8.0_161\jre\bin"/>
@@ -27,7 +31,11 @@
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="user.variant" value=""/>
     <property name="os.name" value="Windows 10"/>
+<<<<<<< HEAD
     <property name="classworlds.conf" value="C:\Users\user\Documents\GitHub\.metadata\.plugins\org.eclipse.m2e.launching\launches\m2conf3320076265481046677.tmp"/>
+=======
+    <property name="classworlds.conf" value="C:\Users\user\Documents\GitHub\.metadata\.plugins\org.eclipse.m2e.launching\launches\m2conf1435237508731357871.tmp"/>
+>>>>>>> eb9f22e15f5fd008b7f6cf076bb779c1721815c1
     <property name="sun.jnu.encoding" value="Cp1252"/>
     <property name="java.library.path" value="C:\Users\user\Desktop\Java\jdk1.8.0_161\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:/Users/user/Desktop/Java/jdk1.8.0_161/bin/../jre/bin/server;C:/Users/user/Desktop/Java/jdk1.8.0_161/bin/../jre/bin;C:/Users/user/Desktop/Java/jdk1.8.0_161/bin/../jre/lib/amd64;c:\MinGw\bin;c:\MinGw\libexec\gcc\x86_64-w64-mingw32\7.2.0;C:\Users\user\gcc\bin;C:\Users\user\gcc\libexec\gcc\x86_64-w64-mingw32\7.2.0;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\oracle\product\10.2.0\db_2\bin;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\GtkSharp\2.12\bin;C:\Program Files (x86)\NoteBook FanControl\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\MySQL\MySQL Server 5.7\bin;C:\Users\user\Desktop\Java\jdk1.8.0_161\bin;;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\nodejs\;C:\Users\user\AppData\Local\Microsoft\WindowsApps;C:\Users\user\AppData\Local\GitHubDesktop\bin;C:\Users\user\AppData\Local\Microsoft\WindowsApps;C:\Users\user\AppData\Roaming\npm;C:\Users\user\Desktop;;."/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
@@ -61,5 +69,9 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
+<<<<<<< HEAD
   <testcase classname="com.ourteam.pcd.testDao.AppTest" name="saveCompteAndAdmin" time="0.077"/>
+=======
+  <testcase classname="com.ourteam.pcd.testDao.AppTest" name="saveCompteAndAdmin" time="0.148"/>
+>>>>>>> eb9f22e15f5fd008b7f6cf076bb779c1721815c1
 </testsuite>
