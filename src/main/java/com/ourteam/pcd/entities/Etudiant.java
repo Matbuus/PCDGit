@@ -29,8 +29,8 @@ public class Etudiant extends Utilisateur {
 		this.numInscription = numInscription;
 	}
 
-	public Etudiant(String numInscription, Compte compte, String nom, String prenom, String telephone) {
-		super(compte, nom, prenom, telephone);
+	public Etudiant(String numInscription, Compte compte, String nom, String prenom, String telephone,String numcin) {
+		super(compte, nom, prenom, telephone,numcin);
 		this.numInscription=numInscription;
 	}
 	

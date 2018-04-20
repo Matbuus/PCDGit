@@ -9,12 +9,13 @@ public class Utilisateur {
 
 	public Utilisateur() {}
 	
-	public Utilisateur(Compte compte, String nom, String prenom, String telephone) {
+	public Utilisateur(Compte compte, String nom, String prenom, String telephone,String numcin) {
 		super();
 		this.compte = compte;
 		this.nom = nom;
 		this.prenom = prenom;
 		this.telephone = telephone;
+		this.numcin = numcin ;
 	}
 
 	@OneToOne(fetch = FetchType.EAGER)
@@ -51,7 +52,7 @@ public class Utilisateur {
 	public void setPrenom(String prenom) {
 		this.prenom = prenom;
 	}
-	@Column(name="telephone" , unique = true, nullable = false, length = 8)
+	@Column(name="telephone" , unique = true, nullable = true, length = 8)
 	protected String telephone;
 
 
@@ -62,6 +63,31 @@ public class Utilisateur {
 	public void setTelephone(String telephone) {
 		this.telephone = telephone;
 	}
+	@Column(name="cin" ,nullable = false , unique = true )
+	private String numcin ; 
+	
+	public String getNumcin() {
+		return numcin;
+	}
+
+	public void setNumcin(String numcin) {
+		this.numcin = numcin;
+	}
+
+	@Transient
+	private String role ;
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+
+
+	
 	
 	
 	

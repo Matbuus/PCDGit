@@ -11,6 +11,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -91,7 +92,7 @@ public class AdminController {
 	
 	// On envoit un compte et un enseignant sous forme de json 
 	// Requete Post pour enregistrer un compte enseignant
-	
+	@CrossOrigin
 	@RequestMapping(value = "/comptes/add/enseignant", method = RequestMethod.POST, headers = "Accept=application/json")
 	@ResponseBody
 	public void ajouterEnseignant(HttpSession session,@RequestBody ObjectNode json) throws Exception {
@@ -112,7 +113,7 @@ public class AdminController {
 		if(enseignantService.findOne(enseignant.getIdEnseignant()) == null) {
 			
 			// Si l'enseignant n'est pas déjà enregistré
-			
+			compte.setPassword(enseignant.getNumcin());
 			enseignant.setCompte(compte);
 			compteService.saveAndFlush(compte);
 			enseignantService.saveAndFlush(enseignant);
@@ -129,7 +130,7 @@ public class AdminController {
 	// On envoit un compte et un etudiant sous forme de json 
 	// Requete Post pour enregistrer un compte etudiant
 	// Même schema que les comptes enseignants
-	
+	@CrossOrigin
 	@RequestMapping(value = "/comptes/add/etudiant", method = RequestMethod.POST, headers = "Accept=application/json")
 	@ResponseBody
 	public void ajouterEtudiant(HttpSession session,@RequestBody ObjectNode json) throws Exception {
@@ -142,6 +143,7 @@ public class AdminController {
 		else {
 		Etudiant etudiant = mapper.treeToValue(etudiantNode, Etudiant.class);
 		if(etudiantService.findOne(etudiant.getNumInscription()) == null) {
+			compte.setPassword(etudiant.getNumcin());
 			etudiant.setCompte(compte);
 			compteService.saveAndFlush(compte);
 			etudiantService.saveAndFlush(etudiant);
