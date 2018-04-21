@@ -185,10 +185,10 @@ public class AdminController {
 	
 	// Front: Formulaire  ou on met le document à publier. 
 	// POST: PUBLICATION D'UN DOCUMENT ADMINISTRATIF:
-	
 	@CrossOrigin
-	@RequestMapping(value = "/documents/publier/{titre}", headers=("content-type=multipart/*"), method = RequestMethod.POST)
-	 public ResponseEntity<DocumentAdministratif> upload(@RequestParam("file") MultipartFile inputFile,@PathVariable("titre") String titre) {
+	@ResponseBody
+	@RequestMapping(value = "/documents/publier", headers="Accept=application/json", method = RequestMethod.POST)
+	 public ResponseEntity<DocumentAdministratif> upload(@RequestParam("file") MultipartFile inputFile, @RequestParam("titre") String titre) {
 	  // Document qui doit persister
 		
 	  DocumentAdministratif documentAdministratifPublie = new DocumentAdministratif(); 
@@ -209,11 +209,10 @@ public class AdminController {
 	    inputFile.transferTo(destinationFile);
 	    
 	    // Mise en place de notre objet à persister
-	    
+	    documentAdministratifPublie.setTitre(titre);
 	    documentAdministratifPublie.setNom("assets/"+suffixe);
 	    documentAdministratifPublie.setNomOriginal(originalFilename);
 	    documentAdministratifPublie.setDateDePublication(java.sql.Timestamp.valueOf(LocalDateTime.now()));
-	    documentAdministratifPublie.setTitre(titre);
 	    headers.add("File Uploaded Successfully - ", originalFilename);
 	    
 	    // Enregistrement: 
