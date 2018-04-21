@@ -187,15 +187,15 @@ public class AdminController {
 	// POST: PUBLICATION D'UN DOCUMENT ADMINISTRATIF:
 	
 	@CrossOrigin
-	@RequestMapping(value = "/documents/publier/{titre}", headers=("content-type=multipart/*"), method = RequestMethod.POST)
-	 public ResponseEntity<DocumentAdministratif> upload(@RequestParam("file") MultipartFile inputFile,@PathVariable("titre") String titre) {
+    @ResponseBody
+	@RequestMapping(value = "/documents/publier", headers="Accept=application/json", method = RequestMethod.POST)
+	 public ResponseEntity<DocumentAdministratif> upload(@RequestParam("file") MultipartFile inputFile, @RequestParam("titre") String titre) {
 	  // Document qui doit persister
-		
+		System.out.println(titre);
 	  DocumentAdministratif documentAdministratifPublie = new DocumentAdministratif(); 
 	  HttpHeaders headers = new HttpHeaders();
 	  if (!inputFile.isEmpty()) {
 	   try {
-		   System.out.println(titre);
 		   // Nom original du fichier: A utiliser dans les recherches
 		   
 	    String originalFilename = inputFile.getOriginalFilename();
@@ -209,11 +209,10 @@ public class AdminController {
 	    inputFile.transferTo(destinationFile);
 	    
 	    // Mise en place de notre objet à persister
-	    
+	    documentAdministratifPublie.setTitre(titre);
 	    documentAdministratifPublie.setNom("assets/"+suffixe);
 	    documentAdministratifPublie.setNomOriginal(originalFilename);
 	    documentAdministratifPublie.setDateDePublication(java.sql.Timestamp.valueOf(LocalDateTime.now()));
-	    documentAdministratifPublie.setTitre(titre);
 	    headers.add("File Uploaded Successfully - ", originalFilename);
 	    
 	    // Enregistrement: 
@@ -229,6 +228,19 @@ public class AdminController {
 	  }
 	 }
 	
+	
+	/*
+	@CrossOrigin
+    @ResponseBody
+	@RequestMapping(value = "/documents/publier", headers="Accept=application/json", method = RequestMethod.POST)
+	 public void  upload() {
+		
+		System.out.println("here");
+		
+		
+		
+	}
+	*/
 	// Suppression d'un document administratif:
 	@CrossOrigin
 	@RequestMapping(value = "/documents/delete/{id}", method = RequestMethod.DELETE)
