@@ -25,7 +25,7 @@ import com.ourteam.pcd.services.CompteService;
 public class ConnexionController {
 	@Autowired
 	private CompteService compteService;
-	Utilisateur user = null;
+	public static Utilisateur user = null;
 	
 	@RequestMapping(value = "/connexion", method = RequestMethod.POST, headers = "Accept=application/json")
 	@ResponseBody
@@ -107,6 +107,7 @@ public class ConnexionController {
 		session.setAttribute("USER_NAME", null);
 		session.setAttribute("USER_TYPE", null);
 		System.out.println("Vous êtes déconnecté.");
+		user = null;
 		return user;
 	}
 }

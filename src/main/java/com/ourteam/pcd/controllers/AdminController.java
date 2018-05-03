@@ -112,7 +112,7 @@ public class AdminController {
 			
 		Enseignant enseignant = mapper.treeToValue(enseignantNode, Enseignant.class);
 		if(enseignantService.findOne(enseignant.getIdEnseignant()) == null) {
-			
+			enseignant.setRole("ENSEIGNANT");
 			// Si l'enseignant n'est pas déjà enregistré
 			compte.setPassword(enseignant.getNumcin());
 			enseignant.setCompte(compte);
@@ -144,6 +144,7 @@ public class AdminController {
 		else {
 		Etudiant etudiant = mapper.treeToValue(etudiantNode, Etudiant.class);
 		if(etudiantService.findOne(etudiant.getNumInscription()) == null) {
+			etudiant.setRole("ETUDIANT");
 			compte.setPassword(etudiant.getNumcin());
 			etudiant.setCompte(compte);
 			compteService.saveAndFlush(compte);
@@ -291,7 +292,13 @@ public class AdminController {
 	
 	}
 
-	
+	@CrossOrigin
+	@RequestMapping(value = "/classes", method = RequestMethod.GET, headers = "Accept=application/json")
+	@ResponseBody
+	public List<Classe> listeDesClasses(HttpSession session) throws Exception {
+		System.out.println("Salut");
+		return classeService.findAll();
+	}
 
 
 

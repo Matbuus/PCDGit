@@ -3,6 +3,7 @@ package com.ourteam.pcd.entities;
 
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
@@ -21,7 +22,15 @@ import com.ourteam.pcd.entities.Enseignant;
 public class DocumentDeClasse extends Document {
 	
 	public DocumentDeClasse () {}
-	
+	@Column(name="description", nullable = true)
+	String description;
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="idEnseignant",nullable=false,unique=false)
 	Enseignant enseignant;

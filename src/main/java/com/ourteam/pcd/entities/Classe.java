@@ -50,7 +50,7 @@ public class Classe {
 	}
 
 	// Ensemble des autorisations reçues par la classe 
-	
+	@JsonIgnore
 	@OneToMany(fetch = FetchType.EAGER, mappedBy="classeConcernee")
 	private Set<Autorisation> autorisationsRecues;
 
@@ -63,7 +63,7 @@ public class Classe {
 	}
 
 	// Ensemble des etudiants formant la classe
-	
+	@JsonIgnore
 	@ManyToMany(fetch = FetchType.EAGER, mappedBy = "classes")
 	private Set<Etudiant> etudiants;
 
